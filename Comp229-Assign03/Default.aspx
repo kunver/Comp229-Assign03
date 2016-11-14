@@ -3,38 +3,53 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-
+        
+        <h1>Rob's College</h1>
+        <h3>Here at Rob&#39;s College we strive for your academic greatness.</h3>
+        </div>
+   
     <div class="row">
         <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-            </p>
-            <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
+            <h2>Our Students</h2>
+                <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
+
+                <ItemTemplate>
+         
+                  <p><a href="Students.aspx"><%# Eval("FirstMidName") %> <%# Eval("LastName") %></a></p>
+                    
+                     
+             
+          </ItemTemplate>
+                </asp:Repeater>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Comp229Assign03ConnectionString %>" SelectCommand="SELECT [FirstMidName], [LastName] FROM [Students]"></asp:SqlDataSource>
+            
         </div>
         <div class="col-md-4">
-            <h2>Get more libraries</h2>
+            <h2>Wish to Enroll?</h2>
             <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
+             Please enter your first name and last name.
             </p>
             <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+              First Name:<asp:TextBox ID="Fname" runat="server" MaxLength="10"></asp:TextBox>
+           <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="Fname" runat="server" ErrorMessage="Only letters allowed" ValidationExpression="^[A-Za-z]*$"></asp:RegularExpressionValidator>
             </p>
+            <p>
+               Last Name:<asp:TextBox ID="Lname" runat="server" MaxLength="10"></asp:TextBox>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ControlToValidate="Lname" runat="server" ErrorMessage="Only letters allowed" ValidationExpression="^[A-Za-z]*$"></asp:RegularExpressionValidator>
+            </p>
+            <p>
+                <asp:Button ID="AddStudent" runat="server" Text="Enroll" OnClick="AddStudent_Click" />
+            </p>
+
+          
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
+            <h2>Update Your Info</h2>
             <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
-            </p>
+                Add or Remove your courses here</p>
             <p>
-                <a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+                
+                <a class="btn btn-default" href="Courses.aspx">Courses</a>
             </p>
         </div>
     </div>
