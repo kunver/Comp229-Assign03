@@ -15,13 +15,12 @@
 
                 <ItemTemplate>
          
-                  <p><a href="Students.aspx"><%# Eval("FirstMidName") %> <%# Eval("LastName") %></a></p>
-                    
+                   <p> <a href="Students.aspx?id=<%# Eval("StudentID") %>"><%# Eval("FirstMidName") %> <%# Eval("LastName") %></a></p>
                      
              
           </ItemTemplate>
                 </asp:Repeater>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Comp229Assign03ConnectionString %>" SelectCommand="SELECT [FirstMidName], [LastName] FROM [Students]"></asp:SqlDataSource>
+               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Comp229Assign03ConnectionString %>" SelectCommand="SELECT [FirstMidName], [LastName], [StudentID] FROM [Students]"></asp:SqlDataSource>
             
         </div>
         <div class="col-md-4">

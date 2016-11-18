@@ -21,14 +21,15 @@ namespace Comp229_Assign03
         {
            
             SqlConnection conn = new SqlConnection(@"Data Source=Robert-PC\SQLEXPRESS;Initial Catalog=Comp229Assign03;Integrated Security=True");
-            SqlCommand addstudent = new SqlCommand("INSERT INTO dbo.Students (FirstName,FirstMidName,EnrollmentDate) VALUES ('@lastname' ,'@firstname', GETDATE() )", conn);
+            SqlCommand addstudent = new SqlCommand("INSERT INTO dbo.Students (LastName,FirstMidName,EnrollmentDate) VALUES (@lastname,@firstname, GETDATE() )", conn);
            
             try
             {
                 string first = Fname.Text;
                 string last = Lname.Text;
-                addstudent.Parameters.AddWithValue("@lastname", last);
                 addstudent.Parameters.AddWithValue("@firstname", first);
+                addstudent.Parameters.AddWithValue("@lastname", last);
+                
                 conn.Open();
                 addstudent.ExecuteNonQuery();
                 
