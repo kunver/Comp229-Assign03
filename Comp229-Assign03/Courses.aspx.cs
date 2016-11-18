@@ -16,60 +16,58 @@ namespace Comp229_Assign03
 
         }
 
-        protected void addbtn_Click(object sender, EventArgs e)
-        {
-          /*  int studentid = Convert.ToInt32(studentidbx.Text);
-            int courseid = null;
-            SqlCommand addclass = new SqlCommand("INSERT INTO Enrollments (CourseID,StudentID,Grade) VALUES ('@course' ,'@student', '0' )", conn);
-            addclass.Parameters.AddWithValue("@course", studentid);
-            addclass.Parameters.AddWithValue("@student", courseid);
-            try
-            {
-                conn.Open();
-                if () { 
-
-                addclass.ExecuteNonQuery();
-                }
-                else
-                {
-                    
-                }
-
-            }
-            catch (NullReferenceException e)
-            {
-
-            }
-            finally
-            {
-
-                conn.Close();
-                Response.Redirect(Request.RawUrl);
-            }
-            */
-        }
+      
 
         protected void rmvbtn_Click(object sender, EventArgs e)
         {
-            SqlCommand removeclass = new SqlCommand("INSERT INTO Students (FirstName,FirstMidName,EnrollmentDate) VALUES ('@lastname' ,'@firstname', 'GETDATE()' )", conn);
+            SqlConnection conn = new SqlConnection(@"Data Source=Robert-PC\SQLEXPRESS;Initial Catalog=Comp229Assign03;Integrated Security=True");
+            SqlCommand removecourse = new SqlCommand("DELETE FROM dbo.Enrollments WHERE CourseID= @course AND StudentID= @student", conn);
+            string course = classlist.SelectedItem.Text;
+            string student = studentidbx.Text;
             try
             {
+
+                removecourse.Parameters.AddWithValue("@course", course);
+                removecourse.Parameters.AddWithValue("@student", student);
                 conn.Open();
-                removeclass.ExecuteNonQuery();
-
-
+                removecourse.ExecuteNonQuery();
             }
-           /* catch (NullReferenceException e)
-            {
 
-            }*/
             finally
             {
 
                 conn.Close();
-                Response.Redirect(Request.RawUrl);
+                Response.Redirect("Courses.aspx");
+
+            }
+        }
+
+        protected void addbutton_Click(object sender, EventArgs e)
+        {
+            //I see this as more of a student focused website, so i don't think adding grade is nessesary.
+            SqlConnection conn = new SqlConnection(@"Data Source=Robert-PC\SQLEXPRESS;Initial Catalog=Comp229Assign03;Integrated Security=True");
+            SqlCommand addcourse = new SqlCommand("INSERT INTO dbo.Enrollments (CourseID,StudentID,Grade) VALUES (@course, @student, @grade )", conn);
+            string course = classlist.SelectedItem.Text;
+            string student = studentidbx.Text;
+            string grade = gradebx.Text;
+            try
+            {
+
+                  addcourse.Parameters.AddWithValue("@course", course);
+                   addcourse.Parameters.AddWithValue("@student", student);
+                addcourse.Parameters.AddWithValue("@grade", grade);
+                conn.Open();
+                  addcourse.ExecuteNonQuery();
             }
 
+            finally
+            {
+
+                 conn.Close();
+                Response.Redirect("Courses.aspx");
+
+            }
+           
         }
     }
 }

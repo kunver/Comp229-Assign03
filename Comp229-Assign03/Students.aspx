@@ -10,15 +10,15 @@
     </p>
      <p>Date Enrolled:<asp:Label ID="labeldate" runat="server" Text="Label"></asp:Label>
     <p>Student's Courses:</p>  <asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
-
+        
                 <ItemTemplate>
-         
-                   <p> <%# Eval("CourseID") %></p>
+                    
+                   <p> Course(<%# Eval("CourseID") %>), Grade(<%# Eval("Grade") %>)</p>
                      
              
           </ItemTemplate>
                 </asp:Repeater>
-               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Comp229Assign03ConnectionString %>" SelectCommand="SELECT [CourseID] FROM [Enrollments] WHERE ([StudentID] = @StudentID)">
+               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Comp229Assign03ConnectionString %>" SelectCommand="SELECT [CourseID], [Grade] FROM [Enrollments] WHERE ([StudentID] = @StudentID) ORDER BY [CourseID]">
                    <SelectParameters>
                        <asp:QueryStringParameter Name="StudentID" QueryStringField="id" Type="Int32" />
                    </SelectParameters>
