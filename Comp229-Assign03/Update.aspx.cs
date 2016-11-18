@@ -25,12 +25,12 @@ namespace Comp229_Assign03
 
 
 
-            if (string.IsNullOrEmpty(textbox1.Text) || string.IsNullOrEmpty(textbox1.Text))
+            if (string.IsNullOrEmpty(Firstname.Text) == false || string.IsNullOrEmpty(Lastname.Text) == false)
             {
                 try
                 {
                     studentid = Request.QueryString["id"];
-                    if (string.IsNullOrEmpty(Firstname.Text) != null && string.IsNullOrEmpty(textbox1.Text)Lastname.Text == null)
+                    if (string.IsNullOrEmpty(Firstname.Text) == false && string.IsNullOrEmpty(Lastname.Text) == true)
                     {
                         fname = Firstname.Text.ToString();
                         updatestudent = new SqlCommand("UPDATE dbo.Students SET FirstMidName = @firstname WHERE StudentID = @studentid", conn);
@@ -38,14 +38,14 @@ namespace Comp229_Assign03
                         updatestudent.Parameters.AddWithValue("@studentid", studentid);
 
                     }
-                    else if (Lastname.Text != null && Firstname.Text == null)
+                    else if (string.IsNullOrEmpty(Firstname.Text) == true && string.IsNullOrEmpty(Lastname.Text) == false)
                     {
                         lname = Lastname.Text.ToString();
-                        updatestudent = new SqlCommand("UPDATE dbo.Students SET LastName = WHERE StudentID = @studentid", conn);
+                        updatestudent = new SqlCommand("UPDATE dbo.Students SET LastName = @lastname WHERE StudentID = @studentid", conn);
                         updatestudent.Parameters.AddWithValue("@lastname", lname);
                         updatestudent.Parameters.AddWithValue("@studentid", studentid);
                     }
-                    else if (Lastname.Text != null && Firstname.Text != null)
+                    else if (string.IsNullOrEmpty(Firstname.Text) == false && string.IsNullOrEmpty(Lastname.Text) == false)
                     {
                         fname = Firstname.Text.ToString();
                         lname = Lastname.Text.ToString();
@@ -66,7 +66,7 @@ namespace Comp229_Assign03
                 {
 
                     conn.Close();
-                    Response.Redirect("Update.aspx?id=" + studentid);
+                    Response.Redirect("default.aspx");
                 }
             }
         }
