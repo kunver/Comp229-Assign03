@@ -70,6 +70,25 @@ namespace Comp229_Assign03
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            string page = this.Page.Request.FilePath;
+            switch (page)
+            {
+                case "Default.aspx":
+                    Page.Title = "Homepage" ;
+                    break;
+                case "Courses.aspx":
+                    Page.Title = "Course Page";
+                    break;
+                case "Students.aspx":
+                    Page.Title = "Students Page";
+                    break;
+                case "Update.aspx":
+                    Page.Title = "Update Page";
+                    break;
+               
+
+            }
+
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

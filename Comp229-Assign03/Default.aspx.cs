@@ -19,9 +19,9 @@ namespace Comp229_Assign03
 
         protected void AddStudent_Click(object sender, EventArgs e)
         {
-            //hello
+           
             SqlConnection conn = new SqlConnection(@"Data Source=Robert-PC\SQLEXPRESS;Initial Catalog=Comp229Assign03;Integrated Security=True");
-            SqlCommand addstudent = new SqlCommand("INSERT INTO Students (FirstName,FirstMidName,EnrollmentDate) VALUES ('@lastname' ,'@firstname', GETDATE() )", conn);
+            SqlCommand addstudent = new SqlCommand("INSERT INTO dbo.Students (FirstName,FirstMidName,EnrollmentDate) VALUES ('@lastname' ,'@firstname', GETDATE() )", conn);
            
             try
             {
@@ -34,11 +34,7 @@ namespace Comp229_Assign03
                 
                
             }
-            catch(NullReferenceException ex)
-            {
-                //change me
-                Console.WriteLine(ex);
-            }
+       
             finally
             {
                 
