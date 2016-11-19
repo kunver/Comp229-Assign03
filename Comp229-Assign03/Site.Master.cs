@@ -88,7 +88,7 @@ namespace Comp229_Assign03
                
 
             }
-
+            pageBody.Attributes.Add("bgcolor", "yellow");
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

@@ -10,7 +10,7 @@ namespace Comp229_Assign03
 {
     public partial class Contact : Page
     {
-        SqlConnection conn = new SqlConnection(@"Data Source=Robert-PC\SQLEXPRESS;Initial Catalog=Comp229Assign03;Integrated Security=True");
+       
         protected void Page_Load(object sender, EventArgs e)
         {
 
